@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View , FlatList} from 'react-native';
 import Header from '../../components/Header';
 import Balance from '../../components/Balance';
+import Moviments from '../../components/moviments';
+import Actions from '../../components/Actions';
 
 // lista ficticia
 const list = [
@@ -8,14 +10,14 @@ const list = [
     id:1,
     label:'Boleto conta luz',
     value: '300,90',
-    date: '11/02/24',
+    date: '02/02/24',
     type: 0 // despesas
   },
   {
     id:2,
     label:'Pix Cliente X',
     value: '1.723,00',
-    date: '11/02/24',
+    date: '08/02/24',
     type: 1 //receita / entrada
   },
   {
@@ -34,7 +36,9 @@ export default function Home() {
       <Header name='Natan Junior'/>
 
 
-      <Balance saldo='4.500' gastos='-386,96'/>    
+      <Balance saldo='4.500' gastos='-386,96'/>   
+
+      <Actions/> 
 
       <Text style={styles.title}>Ultimas movimentações</Text>
 
@@ -43,6 +47,7 @@ export default function Home() {
       data={list}
       keyExtractor={(item)=>String(item.id)}
       showsVerticalScrollIndicator={false}
+      renderItem={({item})=> <Moviments data={item}/>}
       />
 
     </View>
@@ -57,9 +62,7 @@ const styles = StyleSheet.create({
   title:{
     fontSize:18,
     fontWeight:"bold",
-    marginStart: 14,
-    marginEnd: 14,
-    marginTop: 14
+    margin: 14
   },
   list:{
     marginStart: 14,
@@ -82,3 +85,7 @@ const styles = StyleSheet.create({
 
 
 // showsVerticalScrollIndicator={false}: serve para tirar a barra de rolagem da lista.
+
+// vamos instalar uma biblioteca de animações, chamada moti: 
+
+// no expo: expo install moti
