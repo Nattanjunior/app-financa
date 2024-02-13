@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View , FlatList} from 'react-native';
 import Header from '../../components/Header';
 import Balance from '../../components/Balance';
-import Moviments from '../../components/moviments';
+import Moviments from '../../components/Moviments';
 import Actions from '../../components/Actions';
+
 
 // lista ficticia
 const list = [
@@ -88,4 +89,24 @@ const styles = StyleSheet.create({
 
 // vamos instalar uma biblioteca de animações, chamada moti: 
 
-// no expo: expo install moti
+// npm i moti --legacy-peer-deps
+
+//O Moti usa o Reanimated 3 sob o capô para conduzir animações de alto desempenho no iOS, Android e Web.
+
+// Moti requer que você instale o Reanimated 3+ . As versões 2 e 3 são compatíveis.'react-native-reanimated'
+
+// expo: npx expo install react-native-reanimated
+
+// sem expo: npm install react-native-reanimated
+
+// tem que adicionar um plugin ao arquivo: babel.config.js
+
+/*
+   plugins: [
+      ...
+      'react-native-reanimated/plugin',
+    ],
+
+* */
+
+// no app.js, precisamos importar primeiro o react reanimated: import 'react-native-reanimated'

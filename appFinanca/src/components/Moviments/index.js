@@ -6,6 +6,7 @@ import {
     TouchableOpacity
 
 } from 'react-native';
+import {MotiView,AnimatePresence, MotiText} from 'moti'
 
 export default function Moviments({data}) {
     const [visibleValue, setVisibleValue] = useState(false)
@@ -19,10 +20,35 @@ export default function Moviments({data}) {
         <Text style={styles.label}>{data.label}</Text>
 
        {visibleValue ? (
-         <Text style={data.type === 1? styles.value : styles.expenses }>{data.type === 1? `R$ ${data.value} `:`R$ -${data.value} `}</Text>
+        <AnimatePresence exitBeforeEnter >
+            <MotiText style={data.type === 1? styles.value : styles.expenses }
+            from={{
+                translateX:100,
+            }}
+            animate={{
+                translateX:0
+            }}
+            transition={{
+                type:"timing",
+                duration: 500
+            }}
+            
+            >{data.type === 1? `R$ ${data.value} `:`R$ -${data.value} `}</MotiText>
+        </AnimatePresence>
+
        ):(
-        <View style={styles.skaleton}>
-        </View>
+
+        <AnimatePresence exitBeforeEnter>
+            <MotiView style={styles.skaleton}
+            from={{opacity:0}}
+            animate={{opacity:1}}
+            transition={{type:"timing"}}
+            
+            >
+            </MotiView>
+        </AnimatePresence>
+            
+        
        )}
 
     </View>
@@ -69,3 +95,8 @@ const styles = StyleSheet.create({
         borderRadius: 8
     }
 })
+
+
+// AnimatePresence: é usada para criar animações, ele gerencia automaticamente as animações quando os elementos são adicionados ou retirados. 
+
+//exitBeforeEnter: é propriedade  que garante que a saida de um elemento seja concluída antes que um novo elemento seja animado para entrar. Isso evita sobreposições
